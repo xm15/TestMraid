@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>Nexage MRAID Ad to exercise isViewable</title>
+		<script type="application/javascript" src="mraid.js"></script>
+		<script>
+            if (mraid.getState() === 'loading') {
+                mraid.addEventListener('stateChange', handleStateChanged);
+                mraid.addEventListener('ready', showMyAd);
+            } else {
+                showMyAd();
+            }
+        
+            function showMyAd() {
+                //开始展示广告
+                alert('MRAID is ready');
+                var img = document.getElementById("demo");
+                img.src = "http://rm.lomark.cn/Upload/AdMaterials/9ba093daf5c54ddd83f7ea17cf79d81f_640X100.jpg";
+                // 这里 onload 和 onclick 事件需要参考一下 tanx 的写法
+                img.onload = function (){
+                    var img = new Image();
+                    img.src = "loaded image now";
+                    img.width =1;
+                    img.height =1;
+                    document.body.appendChild(img);
+                    alert("image onload");
+                }
+                img.onclick = function (){
+                    var img = new Image();
+                    img.src = "loaded image now";
+                    img.width =1;
+                    img.height =1;
+                    document.body.appendChild(img);
+                    alert("image clicked");
+                    //mraid.open("http://www.baidu.com");
+                    window.location="tel:54455654";
+                }
+                
+            }
+            
+            function handleStateChanged(state) {
+                // 每次状态更改，做一些操作
+                alert('current state: ' + state);
+            }
+        </script>
+	</head>
+	<body>
+		<img id="demo" sytle="width:100%; height:100%;" src=""; alt=""  >
+	</body>
+</html>
